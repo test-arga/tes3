@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array If</title>
+    <style>
+      div {
+        margin-bottom: 50px;
+      }
+      p {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nomor1">
+      <h3>NOMOR 1</h3>
+      <p>Y = 3x + 10</p>
+      <p>dengan nilai X = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</p>
+      <textarea name="hasil" id="" cols="30" rows="10" readonly></textarea>
+    </div>
+    <div class="nomor2">
+      <h3>NOMOR 2</h3>
+      <p>Bilangan Acak : <span></span></p>
+    </div>
+    <div class="nomor3">
+      <h3>NOMOR 3</h3>
+      <p>Min : <span id="min"></span></p>
+      <p>Max : <span id="max"></span></p>
+      <p>Mean : <span id="mean"></span></p>
+      <p>Modus : <span id="modus"></span></p>
+    </div>
+    <script>
+      // Nomor 1
+      let textarea = document.querySelector(".nomor1 textarea");
+      x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      for (let i = 0; i < x.length; i++) {
+        y = 3 * x[i] + 10;
+        textarea.value += "Y = 3(" + x[i] + ") + 10 = " + y + "\n";
+      }
+      // Akhir nomor 1
+
+      // Nomor 2
+      function getRandomNum() {
+        arr = [];
+        for (let i = 0; i < 20; i++) {
+          arr.push(Math.floor(Math.random() * 20) + 1);
+        }
+        return arr;
+      }
+      hasil = getRandomNum();
+      document.querySelector(".nomor2 span").innerHTML = "[ " + hasil.join(" ,") + " ]";
+      //   Akhir Nomor 2
+
+      // Nomor 3
+      let min = hasil[0];
+      let max = hasil[0];
+      //   MIN
+      for (let i = 1; i < hasil.length; i++) {
+        if (hasil[i] < min) {
+          min = hasil[i];
+        }
+      }
+      //   MAX
+      for (let i = 1; i < hasil.length; i++) {
+        if (hasil[i] > max) {
+          max = hasil[i];
+        }
+      }
+      //   MEAN
+      let sum = 0;
+      for (let i = 0; i < hasil.length; i++) {
+        sum += hasil[i];
+      }
+      let mean = sum / hasil.length;
+
+      //   MODUS
+      let modus = [];
+      let count = []; // variable count hanya sebagai pembantu dalam mencari banyaknya data
+      for (let i = 0; i < hasil.length; i++) {
+        //   cek jika variable count masih kosong maka tambahkan datanya
+        if (count.length == 0) {
+          count.push([hasil[i], 1]);
+        } else {
+          let found = false;
+          let j = 0;
+          //   cek apakah data sudah ada sebelemunya
+          while (j < count.length) {
+            if (count[j][0] == hasil[i]) {
+              found = true;
+              break;
+            }
+            j++;
+          }
+          //   jika ketemu maka data yang sudah ada ditambahkan 1
+          if (found) {
+            count[j][1] += 1;
+          } else {
+            //   jika belum ketemu maka tambahkan data
+            count.push([hasil[i], 1]);
+          }
+        }
+      }
+      //   cari nominal banyaknya data
+      let len = 0;
+      for (let i = 0; i < count.length; i++) {
+        if (count[i][1] > len) {
+          len = count[i][1];
+        }
+      }
+      //   cek juga bila semua data banyaknya sama maka print tidak ada
+      // jika lebih dari satu maka push ke variable modus
+      if (len == 1) {
+        modus = "Tidak ada";
+      } else {
+        for (let i = 0; i < count.length; i++) {
+          if (count[i][1] == len) {
+            modus.push(count[i][0]);
+          }
+        }
+      }
+
+      //   cetak semua hasil
+      document.getElementById("min").innerHTML = min;
+      document.getElementById("max").innerHTML = max;
+      document.getElementById("mean").innerHTML = mean;
+      document.getElementById("modus").innerHTML = modus;
+      //   AKHIR NOMOR 3
+
+      
+    </script>
+  </body>
+</html>
