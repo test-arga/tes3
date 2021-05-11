@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+    div.img {
+        border: 1px solid red;
+    }
+    div.img:hover {
+        border: 1px solid blue;
+    }
+    div.img img {
+        width: 100%;
+        height: auto;
+    }
+    div.desc {
+        text-align: center;
+        padding: 10px;
+    }
+    * {
+        box-sizing: border-box;
+    }
+    .responsive {
+        float: left;
+        width: 25%;
+        padding: 0 5px;
+    }
+    @media only screen and (max-width: 800px) {
+        .responsive {
+            width: 50%;
+            margin: 5px 0;
+        }
+    }
+    @media only screen and (max-width: 500px){
+    .responsive {
+        width: 100%;
+    }
+    .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+ 
+    </style>
+    <title>belajar image gallery</title>
+</head>
+<body>
+    <div class="responsive">
+        <div class="img">
+            <a href="gambar1.jpg" target="_blank">
+                <img src="gambar1.jpg" alt="apel1">
+            </a>
+                <div class="desc">Diskripsi disini</div>
+        </div>
+    </div>
+    <div class="responsive">
+        <div class="img">
+            <a href="gambar2.jpg" target="_blank">
+                <img src="gambar2.jpg" alt="apel2">
+            </a>
+            <div class="desc">Diskripsi disini</div>
+        </div>
+    </div>
+    <div class="responsive">
+        <div class="img">
+            <a href="gambar3.jpg" target="_blank">
+                <img src="gambar3.jpg" alt="apel3">
+            </a>
+            <div class="desc">Diskripsi disini</div>
+        </div>
+    </div>
+    <div class="responsive">
+        <div class="img">
+            <a href="gambar4.jpg" target="_blank">
+                <img src="gambar4.jpg" alt="apel4">
+            </a>
+            <div class="desc">Diskripsi disini</div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div style="padding: 10px;">
+        <p>kecilkan browser dan lihat bedanya, jika lebar maximal 800px maka akan tampil dengan 2 kolom atau 50% . Jika lebar maximal 500px maka akan menjadi 1 kolom atau 100% </p>
+    </div>
+</body>
+</html>
